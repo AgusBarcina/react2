@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito Oviedo Equipamiento</title>
+    <style>body{
+        font-family: system-ui;
+    }
+    header{
+        background-color: #e4e4e8;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        box-shadow: 0 7px 8px -3px grey;
+        position: fixed;
+        width: 100%;
+        margin-top: -10px;
+        z-index: 99;
+    }
+    .container{
+        max-width: 1200px;
+        text-align: center;
+        margin: auto;
+    }
+    .header-section{
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        align-items: center;
+        position: relative;
+    }
+    .header-section div{
+        position: relative;
+    }
+    .header-section p{
+        position: absolute;
+        top: -24px;
+        right: -8px;
+        background-color: #fff;
+        padding: 1px 6px;
+        border-radius: 50%;
+        color: red;
+        font-weight: 700;
+        font-family: system-ui;
+        line-height: 18px;
+    }
+    .logo{
+        width: 164px;
+        height: 84px;
+        cursor: pointer;
+    }
+    
+    .cart{
+        width: 39px;
+        height: 38px;
+    }
+    .cart-products{
+        position: absolute!important;
+        top: 82px;
+        right: -18px;
+        background-color: #fff;
+        padding: 0 18px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+        display: none;
+    
+        min-width: 290px;
+    }
+    
+    .cart:hover{
+        margin-bottom: 16px;
+        transition-duration: .5s;
+    }
+    
+    .products{
+        padding-top: 170px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .carts{
+        max-width: 250px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+        padding-bottom: 34px;
+        margin-bottom: 40px;
+    }
+    .carts img{
+        width: 100%;
+    }
+    .carts p{
+        font-family: system-ui;
+        font-weight: 500;
+        padding: 0 20px;
+        margin-bottom: 24px;
+    }
+    .carts div p{
+        position: absolute;
+        top: 0;
+        right: 0px;
+        background-color: rgb(0, 235, 129);
+        color: #fff;
+        padding: 2px 7px 4px 21px;
+        clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+    }
+    .carts div{
+        position: relative;
+    }
+    .carts a{
+        font-family: system-ui;
+        text-decoration: none;
+        background: red;
+        padding: 9px 23px;
+        color: #fff;
+        font-size: 17px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    
+    .carts a:hover{
+        background: #fff;
+        color: red;
+        border: solid 2px red;
+        transition-duration: .3s;
+    }
+    
+    
+    .cart-products .item img{
+        width: 115px;
+    }
+    
+    .cart-products .item{
+        display: flex;
+        align-items: center;
+        border-bottom: solid 2px red;
+    }
+    .cart-products .item .item-content{
+        margin: 0 19px;
+        width: 201px;
+    }
+    .cart-products .item .item-content h5{
+        margin: 0;
+        font-size: 15px;
+        font-weight: 400;
+        font-family: system-ui;
+    }
+    .cart-products .item .item-content h6{
+        margin: 0;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: system-ui;
+    }
+    .cart-products .item span{
+        background-color: red;
+        padding: 0px 5px;
+        border-radius: 50%;
+        color: #fff;
+        font-family: system-ui;
+        cursor: pointer;
+    }
+    .cart-products h3{
+        margin-bottom: 0;
+    }
+    .cart-products .item .item-content h5.cart-price{
+        font-weight: 700;
+    }
+    
+    
+    p.close-btn{
+        top: -4px;
+        right: 6px;
+        cursor: pointer;
+        color: #000;
+    }
+    p.author {
+        display: flex;
+        justify-content: center;
+        FONT-VARIANT: JIS04;
+        margin-top: 3%;
+        gap: 7px;
+    }
+    p.author a {
+        text-decoration: none;
+        font-weight: 700;
+        color: #000;
+    }
+    
+        .button {
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <div class="header-section container">
+            <img class="logo" src="logo.jpg" alt="">
+            <div>
+                <img onclick="showCart(this)" class="cart" src="images.png" alt="">
+                <p class="count-product">0</p>
+            </div>
+            <div class="cart-products" id="products-id">
+                <p class="close-btn" onclick="closeBtn()">X</p>
+                <h3>Mi carrito</h3>
+                <div class="card-items">
+                </div>
+                <h2>Total: $<strong class="price-total">0</strong></h2>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="products">
+            <div class="carts">
+                <div>
+                    <img src="mesa bar.jpg" alt="">
+                    <p><span>700</span>$</p>
+                </div>
+                <p class="title">mesa bar</p>
+                <a href="" data-id="1" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="mesa redonda bar.jpg" alt="">
+                    <p><span>850</span>$</p>
+                </div>
+                <p class="title"> mesa redonda bar</p>
+                <a href="" class="btn-add-cart" data-id="2">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="mesa redonda.jpg" alt="">
+                    <p><span>1020</span>$</p>
+                </div>
+                <p class="title"> mesa redonda</p>
+                <a href="" data-id="3" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="tablon.jpg" alt="">
+                    <p><span>1500</span>$</p>
+                </div>
+                <p class="title"> mesa de tipo tablon</p>
+                <a href="" data-id="4" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="silla country.jpg" alt="">
+                    <p><span>250</span>$</p>
+                </div>
+                <p class="title"> silla country</p>
+                <a href="" data-id="5" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="silla reforzada.jpg" alt="">
+                    <p><span>180</span>$</p>
+                </div>
+                <p class="title"> silla reforzada</p>
+                <a href="" data-id="6" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="tiffany.jpg" alt="">
+                    <p><span>320</span>$</p>
+                </div>
+                <p class="title"> silla tiffany</p>
+                <a href="" data-id="7" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="gacebo.png" alt="">
+                    <p><span>15000</span>$</p>
+                </div>
+                <p class="title"> gacebo</p>
+                <a href="" data-id="8" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="pergola.jpg" alt="">
+                    <p><span>20000</span>$</p>
+                </div>
+                <p class="title"> pergola</p>
+                <a href="" data-id="9" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="juego de living.jpg" alt="">
+                    <p><span>3500</span>$</p>
+                </div>
+                <p class="title"> juego de living</p>
+                <a href="" data-id="10" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="royal.jpg" alt="">
+                    <p><span>320</span>$</p>
+                </div>
+                <p class="title"> Silla royal</p>
+                <a href="" data-id="11" class="btn-add-cart">Añadir al carrito</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        function showCart(x){
+            document.getElementById("products-id").style.display = "block";
+        }
+        function closeBtn(){
+             document.getElementById("products-id").style.display = "none";
+        }
+    </script>
+    <script src="carrito.js" ></script>
+    <a href="index.html" class="button">Volver Al Inicio</a>
+    <a href="post-pedido.html" class="button">Siguiente paso al elegir productos</a>
+    
+</body>
+</html>
